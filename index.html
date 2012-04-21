@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="DLipid : Network inference and dynamic simulation application" />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>DLipid</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/nbidiaz/DLipid">Fork Me on GitHub</a>
+
+          <h1 id="project_title">DLipid</h1>
+          <h2 id="project_tagline">Network inference and dynamic simulation application</h2>
+
+          <section id="downloads">
+            <a class="zip_download_link" href="https://github.com/nbidiaz/DLipid/zipball/master">Download this project as a .zip file</a>
+            <a class="tar_download_link" href="https://github.com/nbidiaz/DLipid/tarball/master">Download this project as a tar.gz file</a>
+          </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h2>Welcome to DLipid Page.</h2>
+
+<p>DLipid is a Java and Matlab application for lipid flux analysis and dynamic simulations. The application uses time-course mass spectrometry data to automatically construct remodeling network and infer dynamic system using B-Spline algorithm.</p>
+
+<p>DLipid is composed of two well-defined sub applications: FluxNetwork and DynamicSimulation.</p>
+
+<h2>How to use it?</h2>
+
+<p>This application can be used in linux, mac, and windows.</p>
+
+<p>To use this tool, you must first download and unpack DLipid.</p>
+
+<pre><code>$ tar -zxvf DLipid.tar.gz
+$ unzip DLipid.zip
+</code></pre>
+
+<p>You will also need to install <a href="http://www.mathworks.com/downloads/web_downloads">Matlab</a>.</p>
+
+<h3>Step 1: Construct flux network and simulation</h3>
+
+<pre><code>$ cd DLipid/bin
+$ java -jar DLipid.jar &lt;inputFile&gt; &lt;minTh&gt; [-m] [-n]
+</code></pre>
+
+<p>Usage:</p>
+
+<pre><code>$ java -jar DLipid.jar ../DATA/18_0-18_1.txt 0.3
+</code></pre>
+
+<p><strong>A) inputFile</strong>:</p>
+
+<p><em>Notice</em>: The default input folder is "../DATA/". If only a filename is given, the application interprets it as "../DATA/filename".</p>
+
+<p><em>Specificiation</em></p>
+
+<pre><code>                      time1           time2           . . .
+
+      specie1         mean    std     mean    std
+
+      specie2         mean    std     mean    std
+
+       . . .
+</code></pre>
+
+<p><strong>B) minTh </strong>:
+    -- Significance score threshold for FluxNetwork application.
+    -- Must be positive.</p>
+
+<p><strong>C) OPTIONS</strong>: </p>
+
+<ul>
+<li>
+<em>-mFLOAT</em> : Maximum threshold. If this value is specified, multiple runs of simulations will be performed using thresholds from minTh to this number at step size 0.1.<br>
+</li>
+<li>
+<em>-nINT</em>: Iteration number in B-Spline algorithm, default is 1000. The algorithm will stop at next-closest iteration where the error is min within last four iterations. The algorithm will also stop when error change is less than 0.0001 between subsequent steps.</li>
+</ul><p>Usage:</p>
+
+<pre><code>$ java -jar DLipid.jar ../DATA/18_0-18_1.txt 0.3 -m0.5 -n1500
+</code></pre>
+
+<p>Then you will see Matlab application starts after a few seconds. 
+You can quit Matlab after calculations finish.</p>
+
+<h3>Step 2: Retrieve flux network and simulation results.</h3>
+
+<p>Go to output folder.</p>
+
+<p>If only a filename is given in Step 1, default output folder is "../RESULTS/$inputFile_prefix/".
+Otherwise an output folder "$inputFilePath/$inputFile_prefix/" will be created.</p>
+
+<p>If you excite the first example command at Step 1, you will see the following files in the output folder.</p>
+
+<p><em>"log_18_0-18_10.3.txt"</em>: stores parameter values and information from dynamic simulations.</p>
+
+<p><em>"sim_18_0-18_10.3.jpg"</em>: shows the fit of simulation to observed kinetics.</p>
+
+<p><em>"18_0-18_10.1.graphml"</em>: is a xml format file of inferred flux network. See <a href="http://www.fileinfo.com/extension/graphml">Graphml File Extension</a> for more detail.</p>
+
+<p><em>"18_0-18_10.3.sif"</em>: is a sif format file of reaction network. Specification:</p>
+
+<pre><code>source1 parameter1 target1
+source2 parameter2 target2
+...
+</code></pre>
+
+<h3>
+<em>LipidGraphical: A graphical interface for flux analysis</em>.</h3>
+
+<p>This application allows vitalization of .grahpml network files.</p>
+
+<pre><code>$ java -jar FluxNetworkGUI.jar
+</code></pre>
+
+<h3><em>DynamicSimulation:</em></h3>
+
+<p>This application allows simulation with user-defined .sif reaction network file.</p>
+
+<pre><code>$ cd bin
+$ matlab
+</code></pre>
+
+<p>Usage: </p>
+
+<pre><code>&gt; main_remodeling_sim('../DATA/18_0-18_1.txt',
+                     '../RESULTS/18_0-18_1/18_0-18_10.3.sif');
+</code></pre>
+
+<h2>Authors</h2>
+
+<p><a href="http://www.upo.es/eps/ndiaz/">Norberto Díaz-Díaz</a> (<a href="mailto:ndiaz@upo.es">ndiaz@upo.es</a>) and Lu Zhang (<a href="mailto:zhanglv@bc.edu">zhanglv@bc.edu</a>).</p>
+
+<p>Copyright © 2012 Chuang Lab Boston College.</p>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">DLipid maintained by <a href="https://github.com/nbidiaz">nbidiaz</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
