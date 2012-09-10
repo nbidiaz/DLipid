@@ -16,15 +16,15 @@
     <!-- HEADER -->
     <div id="header_wrap" class="outer">
         <header class="inner">
-          <a id="forkme_banner" href="https://github.com/nbidiaz/DLipid">Fork Me on GitHub</a>
+          <a id="forkme_banner" href="https://github.com/nbidiaz/DLipid">View on GitHub</a>
 
           <h1 id="project_title">DLipid</h1>
           <h2 id="project_tagline">Network inference and dynamic simulation application</h2>
 
-          <section id="downloads">
-            <a class="zip_download_link" href="https://github.com/nbidiaz/DLipid/zipball/master">Download this project as a .zip file</a>
-            <a class="tar_download_link" href="https://github.com/nbidiaz/DLipid/tarball/master">Download this project as a tar.gz file</a>
-          </section>
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/nbidiaz/DLipid/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/nbidiaz/DLipid/tarball/master">Download this project as a tar.gz file</a>
+            </section>
         </header>
     </div>
 
@@ -35,7 +35,7 @@
 
 <p>DLipid is a Java and Matlab application for lipid flux analysis and dynamic simulations. The application uses time-course mass spectrometry data to automatically construct remodeling network and infer dynamic system using B-Spline algorithm.</p>
 
-<p>DLipid is composed of two well-defined sub applications: FluxNetwork and DynamicSimulation.</p>
+<p>DLipid is composed of two well-defined sub applications: FluxAnalysis and DynamicSimulation.</p>
 
 <h2>How to use it?</h2>
 
@@ -49,7 +49,7 @@ $ unzip DLipid.zip
 
 <p>You will also need to install <a href="http://www.mathworks.com/downloads/web_downloads">Matlab</a>.</p>
 
-<h3>Step 1: Construct flux network and simulation</h3>
+<h3>Step 1: Construct correlation network and simulation</h3>
 
 <pre><code>$ cd DLipid/bin
 $ java -jar DLipid.jar &lt;inputFile&gt; &lt;minTh&gt; [-m] [-n]
@@ -95,7 +95,7 @@ $ java -jar DLipid.jar &lt;inputFile&gt; &lt;minTh&gt; [-m] [-n]
 <p>Then you will see Matlab application starts after a few seconds. 
 You can quit Matlab after calculations finish.</p>
 
-<h3>Step 2: Retrieve flux network and simulation results.</h3>
+<h3>Step 2: Retrieve correlation network and simulation results.</h3>
 
 <p>Go to output folder.</p>
 
@@ -122,7 +122,7 @@ source2 parameter2 target2
 
 <p>This application allows vitalization of .grahpml network files.</p>
 
-<pre><code>$ java -jar FluxNetworkGUI.jar
+<pre><code>$ java -jar FluxAnalysisGUI.jar
 </code></pre>
 
 <h3><em>DynamicSimulation:</em></h3>
